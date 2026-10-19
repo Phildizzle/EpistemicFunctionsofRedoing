@@ -106,7 +106,7 @@ fig1 <- ggplot(df_long, aes(x = Function, y = Score, fill = Function)) +
   scale_fill_manual(values = fn_colors) +
   scale_y_continuous(limits = c(1, 5.6), breaks = 1:5) +
   coord_cartesian(clip = "off") +
-  labs(x = NULL) +
+  labs(x = NULL, y = "Mean relevance (1\u20135)") +
   theme_minimal(base_size = 17) +
   theme(legend.position = "none", plot.margin = margin(5, 40, 5, 5))
 ggsave(file.path("output", "figures", "fig1_composite_scores.png"),
@@ -166,6 +166,21 @@ item_means$Stage <- factor(item_means$Stage,
              "Sampling and\nrepresentation\nconsiderations",
              "Theoretical\nconsiderations"))
 item_means$Function <- factor(item_means$Function, levels = fn_labels)
+# Text colour: whichever of dark grey or white has the higher contrast
+# ratio (WCAG) against the cell fill, so labels stay legible on mid tones
+rel_luminance <- function(hex) {
+  rgb <- grDevices::col2rgb(hex)[, 1] / 255
+  rgb <- ifelse(rgb <= 0.03928, rgb / 12.92, ((rgb + 0.055) / 1.055)^2.4)
+  sum(c(0.2126, 0.7152, 0.0722) * rgb)
+}
+contrast <- function(a, b) {
+  la <- rel_luminance(a); lb <- rel_luminance(b)
+  (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
+}
+text_colour_for <- function(fill) {
+  if (contrast(fill, "#333333") >= contrast(fill, "#FFFFFF")) "#333333" else "#FFFFFF"
+}
+
 item_means <- item_means %>%
   group_by(Function) %>%
   mutate(value_frac = (Mean - min(Mean)) / (max(Mean) - min(Mean))) %>%
@@ -173,7 +188,7 @@ item_means <- item_means %>%
   mutate(fill_hex = mapply(function(f, v)
            colorspace::lighten(fn_colors[[as.character(f)]], amount = 0.55 * (1 - v)),
            Function, value_frac),
-         label_color = ifelse(value_frac > 0.5, "white", "grey20"))
+         label_color = sapply(fill_hex, text_colour_for))
 
 fig2 <- ggplot(item_means, aes(x = Function, y = Stage, fill = fill_hex)) +
   geom_tile(color = "white", linewidth = 0.9) +
@@ -224,20 +239,21 @@ cat("\n=== RESULTS 4: Personal attitudes, subjective norms, and perceived behavi
 
 # Paragraphs 1-3: item means for attitudes, subjective norms and PBC (Figure 3)
 
+# Items in the order of Table 3
 item_spec <- data.frame(
-  code = c("PB02_01","PB02_03","PB02_04","PB02_02",
-           "PB03_07","PB03_06","PB03_08","PB03_10","PB03_09","PB03_05",
+  code = c("PB02_01","PB02_02","PB02_03","PB02_04",
+           "PB03_05","PB03_06","PB03_07","PB03_08","PB03_09","PB03_10",
            "PB04_03","PB04_02","PB04_04","PB04_06"),
-  Item = c("Repl./repr. are important\nin Communication Science",
+  Item = c("Repl./repr. are important\nin communication science",
+           "Repl./repr. can enhance\nmy academic recognition",
            "Repl./repr. add value even if\nfindings are not replicated",
            "Willing to put in extra effort\nto make my research repr.",
-           "Repl./repr. can enhance\nmy academic recognition",
+           "Researchers in communication science\naim to conduct repl./repr. studies",
+           "Researchers in communication science\nwould expect it of me",
            "Repl./repr. work is valued\nin my research community",
-           "Researchers in Comm. Science\nwould expect it of me",
            "Journals/conferences I submit to\nexpect repl./repr. research",
-           "Funding bodies I apply to\nexpect repl./repr. research",
            "My university or research institute\nexpects repl./repr. research",
-           "Researchers in Comm. Science\naim to conduct repl./repr. studies",
+           "Funding bodies I apply to\nexpect repl./repr. research",
            "Capable of making my research\nrepl./repr. for others",
            "Find it easy to document\nand share code (reverse-coded)",
            "Have the knowledge to make\nmy research repl./repr.",
@@ -255,35 +271,37 @@ item_spec$n  <- sapply(item_spec$code, function(cc) sum(!is.na(ds[[cc]])))
 print(transform(item_spec[, c("code","Category","Mean","SD","n")],
                 Mean = round(Mean, 2), SD = round(SD, 2)), row.names = FALSE)
 
-item_spec$Item <- factor(item_spec$Item, levels = item_spec$Item[order(item_spec$Mean)])
+# First item at the top (Table 3 order)
+item_spec$Item <- factor(item_spec$Item, levels = rev(item_spec$Item))
 
-make_panel <- function(data, title, fill_color) {
-  ggplot(data, aes(x = Item, y = Mean)) +
-    geom_col(width = 0.65, alpha = 0.88, fill = fill_color) +
-    geom_hline(yintercept = 3, color = "grey40", linewidth = 0.7) +
-    geom_text(aes(label = sprintf("%.2f (%.2f)", Mean, SD)),
-              hjust = -0.12, size = 5, fontface = "bold") +
-    scale_y_continuous(limits = c(0, 5.7), breaks = 1:5, expand = c(0, 0)) +
-    coord_flip() +
+# Dot plot: segment from the scale minimum (1) to the mean, value labels in
+# a separate column to the right so they never overlap the midpoint line
+make_panel <- function(data, title, colour) {
+  ggplot(data, aes(y = Item)) +
+    geom_vline(xintercept = 3, colour = "grey55", linewidth = 0.6, linetype = "dashed") +
+    geom_segment(aes(x = 1, xend = Mean, yend = Item), colour = colour, linewidth = 1.2) +
+    geom_point(aes(x = Mean), colour = colour, size = 4) +
+    geom_text(aes(x = 5.35, label = sprintf("%.2f (%.2f)", Mean, SD)),
+              hjust = 0, size = 4.6, fontface = "bold") +
+    scale_x_continuous(limits = c(1, 6.4), breaks = 1:5, expand = c(0, 0.05)) +
     labs(x = NULL, y = NULL, title = title) +
     theme_minimal(base_size = 12) +
-    theme(plot.title = element_text(face = "bold", size = 18, hjust = 0),
-          axis.text.y = element_text(size = 13, hjust = 1),
-          axis.text.x = element_text(size = 13),
-          axis.ticks.y = element_blank(),
+    theme(plot.title = element_text(face = "bold", size = 17, hjust = 0),
+          axis.text.y = element_text(size = 12.5, hjust = 1),
+          axis.text.x = element_text(size = 12.5),
           panel.grid.minor = element_blank(),
           panel.grid.major.y = element_blank(),
-          plot.margin = margin(t = 15, b = 15, l = 5, r = 15))
+          plot.margin = margin(t = 12, b = 12, l = 5, r = 10))
 }
 fig3 <- (make_panel(filter(item_spec, Category == "Personal Attitude"),
-                    "Personal Attitudes", "#1a9850") /
+                    "Personal attitudes", "#1a9850") /
          make_panel(filter(item_spec, Category == "Perceived Field Norms"),
-                    "Subjective Norms", "#d73027") /
+                    "Subjective norms", "#d73027") /
          make_panel(filter(item_spec, Category == "Perceived Behavioural Control"),
-                    "Perceived Behavioural Control", "#4575b4")) +
+                    "Perceived behavioural control", "#4575b4")) +
   plot_layout(heights = c(4, 6, 4)) &
-  labs(x = NULL, y = "Mean agreement (1–5)") &
-  theme(axis.title.x = element_text(size = 13, face = "bold", margin = margin(t = 10)))
+  labs(x = "Mean agreement (1\u20135)") &
+  theme(axis.title.x = element_text(size = 12.5, face = "bold", margin = margin(t = 8)))
 ggsave(file.path("output", "figures", "fig3_attitudes_norms_control.png"),
        fig3, width = 9, height = 12, dpi = 300, bg = "white")
 
