@@ -1,0 +1,152 @@
+N respondents: 67
+
+=== RESULTS 1: Sample description (Table 2) ===
+Countries pooled as 'Other' (Table 2, footnote b):
+
+Australia   Ireland    Norway   Denmark     Italy        UK 
+        2         2         2         1         1         1 
+Age: M = 39.3, SD = 11.3, range = 27-77, n = 48 (71.6%)
+                         Characteristic            Category  n  pct
+                           Career stage      PhD researcher 25 37.3
+                           Career stage             Postdoc 13 19.4
+                           Career stage  Research scientist  6  9.0
+                           Career stage Assistant professor  6  9.0
+                           Career stage Associate professor  3  4.5
+                           Career stage      Full professor 14 20.9
+                                 Gender                Male 37 55.2
+                                 Gender              Female 26 38.8
+                                 Gender    Non-binary/Other  1  1.5
+                                 Gender   Prefer not to say  3  4.5
+                              Education     Master's degree 25 37.3
+                              Education           Doctorate 42 62.7
+                             Employment           Permanent 24 35.8
+                             Employment           Temporary 43 64.2
+                            Affiliation          University 56 83.6
+                            Affiliation  Research institute  8 11.9
+                            Affiliation   Government agency  2  3.0
+                            Affiliation               Other  1  1.5
+ Reproduction or replication experience       Has attempted 27 40.3
+ Reproduction or replication experience   Has not attempted 40 59.7
+                                Country             Germany 36 53.7
+                                Country                 USA  8 11.9
+                                Country         Netherlands  5  7.5
+                                Country               Other  9 13.4
+                                Country   Prefer not to say  9 13.4
+
+=== RESULTS 2: Perceived relevance of the four epistemic functions ===
+Robustness  M = 3.77, SD = 0.59, Mdn = 4.00, n = 67
+Precision   M = 3.89, SD = 0.60, Mdn = 4.00, n = 67
+Boundary    M = 3.69, SD = 0.64, Mdn = 3.75, n = 67
+Extension   M = 3.82, SD = 0.63, Mdn = 3.75, n = 67
+Friedman: chi2(3) = 8.035, p = 0.045, W = 0.040, n = 67
+Composite correlations (Pearson): range 0.35-0.51, mean 0.42
+Within-respondent SD: median = 0.38
+Spread > 0.5: 49 of 67 (73.1%); spread > 1: 21 (31.3%)
+
+Table A2 (pairwise, Bonferroni):
+          A         B      V  p_raw p_adj  m      r
+ Robustness Precision  757.0 0.1217 0.730 62 -0.225
+ Robustness  Boundary  967.0 0.3841 1.000 58  0.130
+ Robustness Extension  733.0 0.5957 1.000 56 -0.081
+  Precision  Boundary 1246.0 0.0294 0.176 61  0.318
+  Precision Extension  777.5 0.2791 1.000 51  0.173
+   Boundary Extension  695.5 0.2132 1.000 58 -0.187
+
+=== RESULTS 3: Perceived relevance across research process stages ===
+Stage mean, Sampling        3.71
+Stage mean, Methodological  3.95
+Stage mean, Success         3.77
+Stage mean, Theoretical     3.74
+Robustness  Friedman: chi2(3) = 6.606, p = 0.086, W = 0.033, n = 66
+Precision   Friedman: chi2(3) = 10.002, p = 0.019, W = 0.051, n = 65
+Boundary    Friedman: chi2(3) = 11.306, p = 0.010, W = 0.057, n = 66
+Extension   Friedman: chi2(3) = 14.180, p = 0.003, W = 0.072, n = 66
+
+Table A3 (pairwise within function, Bonferroni):
+      Group              A              B     V  p_raw p_adj  m      r
+ Robustness       Sampling Methodological 419.0 0.5029 1.000 43 -0.114
+ Robustness       Sampling        Success 623.0 0.2265 1.000 45  0.204
+ Robustness       Sampling    Theoretical 460.5 0.6845 1.000 44 -0.070
+ Robustness Methodological        Success 573.5 0.0241 0.144 40  0.399
+ Robustness Methodological    Theoretical 632.0 0.6372 1.000 48  0.075
+ Robustness        Success    Theoretical 250.0 0.0459 0.276 39 -0.359
+  Precision       Sampling Methodological 218.5 0.0073 0.044 40 -0.467
+  Precision       Sampling        Success 398.0 0.2389 1.000 44 -0.196
+  Precision       Sampling    Theoretical 325.0 0.0432 0.259 44 -0.343
+  Precision Methodological        Success 386.0 0.1214 0.728 34  0.297
+  Precision Methodological    Theoretical 531.5 0.6637 1.000 44  0.074
+  Precision        Success    Theoretical 328.0 0.3726 1.000 39 -0.159
+   Boundary       Sampling Methodological 252.0 0.0502 0.301 39 -0.354
+   Boundary       Sampling        Success 149.5 0.0028 0.017 36 -0.551
+   Boundary       Sampling    Theoretical 343.0 0.0403 0.242 45 -0.337
+   Boundary Methodological        Success 490.0 0.7503 1.000 45 -0.053
+   Boundary Methodological    Theoretical 615.0 0.7783 1.000 48  0.046
+   Boundary        Success    Theoretical 578.0 0.4816 1.000 45  0.117
+  Extension       Sampling Methodological 497.0 0.9855 1.000 44  0.004
+  Extension       Sampling        Success 411.5 0.5471 1.000 38  0.111
+  Extension       Sampling    Theoretical 673.5 0.0003 0.002 40  0.643
+  Extension Methodological        Success 542.5 0.5738 1.000 44  0.096
+  Extension Methodological    Theoretical 827.0 0.0015 0.009 46  0.530
+  Extension        Success    Theoretical 814.0 0.0019 0.011 46  0.506
+
+=== RESULTS 4: Personal attitudes, subjective norms, and perceived behavioural control ===
+    code                      Category Mean   SD  n
+ PB02_01             Personal Attitude 4.39 0.78 67
+ PB02_03             Personal Attitude 4.49 0.83 65
+ PB02_04             Personal Attitude 4.28 0.71 67
+ PB02_02             Personal Attitude 3.32 1.21 65
+ PB03_07         Perceived Field Norms 3.21 1.07 66
+ PB03_06         Perceived Field Norms 2.95 1.28 64
+ PB03_08         Perceived Field Norms 2.93 1.05 67
+ PB03_10         Perceived Field Norms 2.88 1.20 58
+ PB03_09         Perceived Field Norms 2.79 1.22 66
+ PB03_05         Perceived Field Norms 2.73 0.97 66
+ PB04_03 Perceived Behavioural Control 4.13 1.00 67
+ PB04_02 Perceived Behavioural Control 3.55 1.32 67
+ PB04_04 Perceived Behavioural Control 4.00 1.00 67
+ PB04_06 Perceived Behavioural Control 3.12 1.40 67
+
+Replication rate (n = 63): desired M = 52.6% (SD = 27.4), expected M = 14.2% (SD = 15.3)
+Wilcoxon signed-rank: V = 1972, p = 4.2e-11, r = 0.956
+
+=== RESULTS 5: Differences by prior reproduction or replication experience (Table 3) ===
+                         Block                                    Item M_exp n_exp M_nonexp n_nonexp     U
+           Epistemic functions                              Robustness  3.90    27     3.69       40 678.0
+           Epistemic functions                               Precision  3.96    27     3.84       40 606.5
+           Epistemic functions                                Boundary  3.88    27     3.57       40 680.0
+           Epistemic functions                               Extension  3.87    27     3.78       40 590.5
+            Personal attitudes                     Importance to field  4.37    27     4.40       40 540.0
+            Personal attitudes                    Academic recognition  3.41    27     3.26       38 553.5
+            Personal attitudes             Value regardless of outcome  4.50    26     4.49       39 547.5
+            Personal attitudes               Importance despite effort  4.30    27     4.28       40 535.0
+              Subjective norms            Field aims to be repl./repr.  2.74    27     2.72       39 532.5
+              Subjective norms               Field expects repl./repr.  2.77    26     3.08       38 416.5
+              Subjective norms            Community values repl./repr.  2.93    27     3.41       39 381.5
+              Subjective norms Journals/conferences expect repl./repr.  2.85    27     2.98       40 504.5
+              Subjective norms          University expects repl./repr.  2.48    27     3.00       39 396.0
+              Subjective norms              Funders expect repl./repr.  2.73    26     3.00       32 362.0
+ Perceived behavioural control                      Capable for others  4.15    27     4.12       40 548.5
+ Perceived behavioural control                               Code ease  3.52    27     3.58       40 519.5
+ Perceived behavioural control                               Knowledge  3.89    27     4.08       40 487.5
+ Perceived behavioural control                               Data ease  3.26    27     3.02       40 592.0
+     p      r
+ 0.076 -0.256
+ 0.395 -0.123
+ 0.071 -0.259
+ 0.519 -0.094
+ 1.000  0.000
+ 0.584 -0.079
+ 0.522 -0.080
+ 0.949  0.009
+ 0.939 -0.011
+ 0.281  0.157
+ 0.050  0.275
+ 0.642  0.066
+ 0.082  0.248
+ 0.388  0.130
+ 0.913 -0.016
+ 0.792  0.038
+ 0.483  0.097
+ 0.501 -0.096
+
+Done. Figures in output/figures, tables in output/tables.
