@@ -2,7 +2,7 @@
 
 Data and analysis code for:
 
-> Knöpfle, P. (2026). *Epistemic Functions of Reengagement with Prior Findings: An Exploratory Survey of Computational Communication Researchers.* Manuscript submitted for publication.
+> XX, X. (2026). *Epistemic Functions of Reengagement with Prior Findings: An Exploratory Survey of Computational Communication Researchers.* Manuscript submitted for publication.
 
 The survey (N = 67) asked computational communication researchers how relevant four epistemic functions of reengagement (robustness, precision, boundary, extension) are across four research stages, and measured their attitudes, subjective norms and perceived behavioural control regarding reproductions and replications. Preregistrations: [osf.io/gyvp7](https://osf.io/gyvp7/overview) and [osf.io/abyjc](https://osf.io/abyjc/overview).
 
